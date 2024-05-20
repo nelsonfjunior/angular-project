@@ -10,7 +10,7 @@ export class HomeComponent implements DoCheck{
   num: number = 0;
 
   ngDoCheck(): void {
-    console.log('Uma mudanca foi feita')
+    console.log('Uma mudanca foi feita');
   }
 
   adiciona1() {
