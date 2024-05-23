@@ -1,5 +1,5 @@
-import { Component, DoCheck, OnDestroy } from '@angular/core';
-import { UserService } from '../../_services/user.service';
+import { UserService } from './../../_services/user.service';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 
 @Component({
@@ -7,12 +7,20 @@ import { User } from '../../models/user';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit{
 
-  user: User | undefined;
   constructor(private userService: UserService){
-    this.user = userService.getUser();
+
   }
 
+  ngOnInit(): void {
+    this.getGitUser();
+  }
+
+  getGitUser(){
+    this.userService.getGitUser('facebook').subscribe((response: any)=>{
+      console.log(response);
+    });
+  }
 
 }
