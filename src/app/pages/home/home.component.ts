@@ -1,20 +1,18 @@
 import { Component, DoCheck, OnDestroy } from '@angular/core';
+import { UserService } from '../../_services/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements DoCheck{
+export class HomeComponent{
 
-  num: number = 0;
-
-  ngDoCheck(): void {
-    console.log('Uma mudanca foi feita');
+  user: User | undefined;
+  constructor(private userService: UserService){
+    this.user = userService.getUser();
   }
 
-  adiciona1() {
-    this.num++;
-  }
 
 }
