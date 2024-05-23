@@ -3,13 +3,14 @@ import { User } from '../models/user';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { UserGit } from '../models/userGit';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl: String = environment.apiUrl;
 
+  baseUrl: String = environment.apiUrl;
   user: User | undefined;
 
   constructor(private http: HttpClient) {
@@ -17,8 +18,8 @@ export class UserService {
   }
 
   getGitUser(username: String){
-    return this.http.get(this.baseUrl + 'users/' + username).pipe(
-      map((response: any)=> {
+    return this.http.get<UserGit>(this.baseUrl + 'users/' + username).pipe(
+      map((response: UserGit) => {
         return response;
       })
     );
